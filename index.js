@@ -15,10 +15,16 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(isim, fiyat, kategori){
+ const obje = {
+	"isim" : isim,
+	"fiyat" : fiyat,
+	"kategori": kategori
+ };
+ return obje;
 }
 
+console.log(MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
 
 
 /*  Görev 1b (otomatik test yok): 
@@ -30,6 +36,9 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 */
+console.log(MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar"));
+console.log(MenuElemaniOlustur("Kebap",35,"Kebaplar"));
+console.log(MenuElemaniOlustur("Yuvalama",30,"Ev Yemekleri"));
 
 
 
@@ -49,10 +58,19 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 const burger = {
 	isim: "Burger", 
 	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
-
+	kategori: "Öğle Yemeği",
+	indirim : function(str){
+		if(str == "öğretmen" || str == "öğrenci"){
+			var res = this.fiyat*0.75;
+		}
+		else if(str == "diğer"){
+			var res = this.fiyat*0.9;
+		}
+		return res;
+	}
 }
 
+console.log(burger.indirim("öğretmen"));
 
 
 ///////////////Değerlendirmeler (MVP)///////////////////
@@ -71,7 +89,9 @@ const degerlendirmeler = [
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
-
+	degerlendirmeler.filter(e => {
+		e.isim ==="Ahmet" ? console.log(e.geribildirim) : null;
+	})
 
 
 /*  Görev 4 (ototest yok):  
@@ -79,7 +99,13 @@ const degerlendirmeler = [
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
-
+	
+	degerlendirmeler.filter(e => {
+		if(e.isim === "Reyna"){
+			e.geribildirim= "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım";
+			console.log(e.isim +" " + e.geribildirim);
+		}
+	})
 
 
 /*  Görev 5: 
@@ -94,12 +120,20 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
+function DegerledirmeEkle(deger, isim, puan, geribildirim){
+	
+	const newObj = {
+		isim:isim,
+		puan:puan,
+		geribildirim:geribildirim
+	};
+
+	deger.push(newObj);
+	return deger;
 	
 }
 
-
+console.log(DegerledirmeEkle(degerlendirmeler, 'Furkan', 5, 'Hmm Bilemedim'));
 
 /*  Görev 6: 
 	Dizideki değerlendirmelerin anahtarına(key,index) bağlı olarak bir değerlendirme döndüren bir fonksiyon yazın
@@ -112,11 +146,12 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(key, index) {
 
+	var str = `${key[index].isim} isimli kişi ${key[index].puan} puan verdi ve şunları yazdı: ${key[index].geribildirim}`
+	return str;
 }
-
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,0));
 
 
 /*  Görev 7:  
@@ -132,10 +167,13 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
-} 
+function SonDegerlendirmeyiAl(key) {
+	
+	var str = `${key[key.length-1].isim} isimli kişi ${key[key.length-1].puan} puan verdi ve şunları yazdı: ${key[key.length-1].geribildirim}`;
+	return str;
 
+} 
+console.log(SonDegerlendirmeyiAl(degerlendirmeler))
 
 
 /////////////// BONUS  GÖRVLER////////////////////
