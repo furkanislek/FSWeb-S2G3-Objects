@@ -93,6 +93,17 @@ const degerlendirmeler = [
 		e.isim ==="Ahmet" ? console.log(e.geribildirim) : null;
 	})
 
+	// for(var i = 0; i<degerlendirmeler.length; i++){
+	// 	if(degerlendirmeler[i]["isim"] == "Latife"){
+	// 		console.log(degerlendirmeler[i]["geribildirim"]);
+	// 	}
+	// }
+
+	// degerlendirmeler.forEach((e) => {
+	// 	if(e["isim"] == "Pınar"){
+	// 		console.log(e["geribildirim"]);
+	// 	}
+	// })
 
 /*  Görev 4 (ototest yok):  
 	Reyna'nın geribildirimi girilmemiş! Aşağıdakileri uygulayın: (fonksiyona gerek yok) 
@@ -173,7 +184,7 @@ function SonDegerlendirmeyiAl(key) {
 	return str;
 
 } 
-console.log(SonDegerlendirmeyiAl(degerlendirmeler))
+console.log(SonDegerlendirmeyiAl(degerlendirmeler))                         
 
 
 /////////////// BONUS  GÖRVLER////////////////////
@@ -191,11 +202,11 @@ console.log(SonDegerlendirmeyiAl(degerlendirmeler))
     {isim:"Latife", puan: 4, geribildirim: "Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi."}
 	]
 */
-
-function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function PuanaGoreDegerlendirmeAl(deger, puanAralık) {
+    var result = deger.filter(e => (e.puan >= puanAralık && e.puan < puanAralık +1 ))
+	return result
 }
-
+console.log(PuanaGoreDegerlendirmeAl(degerlendirmeler,4));
 
 /*  BONUS 2:    
 	UzunDegerlendirmeleriAl fonksiyonuna aşağıdakileri uygulayın:
@@ -203,11 +214,12 @@ function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
 	2. Geribildiriminde 15'den fazla kelime içeren tüm nesneleri bir dizi olarak döndürecek
 	
 */
-
-function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+console.clear()
+function UzunDegerlendirmeleriAl(deger) {
+   var res = deger.filter( e => e.geribildirim.split(' ').length > 15);
+	return res;
 }
-
+console.log(UzunDegerlendirmeleriAl(degerlendirmeler))
 
 /*  BONUS 3:  
 	Bu ek görevde degerlendirmeler dizisi kullanılmayacak!  Bu görevde kendi nesnenizi yaratmanız gerekmektedir.
