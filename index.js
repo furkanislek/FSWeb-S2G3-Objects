@@ -239,10 +239,22 @@ console.log(UzunDegerlendirmeleriAl(degerlendirmeler))
 */
 
 
-function arabaYapici(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function arabaYapici(kms) {
+
+
+	const cars = {
+		kmBelirleme : function(km){
+			return km + kms
+	 }
+	}
+	return cars;
     
 }
+
+var car1 = new arabaYapici(40);
+var car2 = new arabaYapici(10);
+console.log(car1.kmBelirleme(90));
+console.log(car2.kmBelirleme(90));
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
